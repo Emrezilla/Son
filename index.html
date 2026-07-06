@@ -469,4 +469,21 @@
                 loadQuestion();
             } else {
                 endGame();
-        
+            }
+        }
+
+        // Puan Tablosunu Güncelle
+        function updateScoreBoard() {
+            document.getElementById('score-display').innerText = 
+                `Soru: ${currentIndex + 1}/${currentQuestions.length} | Puan: ${score}`;
+        }
+
+        // Oyunu Bitir
+        function endGame() {
+            gameScreen.style.display = 'none';
+            resultScreen.style.display = 'flex';
+            document.getElementById('final-score').innerText = `Toplam Puanınız: ${score}`;
+        }
+    </script>
+</body>
+</html>
