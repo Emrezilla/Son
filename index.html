@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haritalı Coğrafya Alıştırması</title>
+    <title>Haritalarla Coğrafya</title>
     <style>
         :root {
             --primary: #2c3e50;
@@ -182,11 +182,11 @@
         #map-container {
             position: relative;
             width: 100%;
-            background-image: url('renkli.png');
+            background-image: url('image.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            aspect-ratio: 2.15 / 1;
+            aspect-ratio: 2.50 / 1;
             border: 2px solid var(--secondary);
             border-radius: 5px;
             overflow: hidden;
@@ -261,16 +261,16 @@
         
         .home-btn:hover { background-color: #2980b9; }
 
-        /* Geliştirici Etiketi */
+        /* Geliştirici Etiketi - İstediğin Gibi Küçültüldü */
         .developer-credit {
             position: fixed;
             bottom: 15px;
             right: 15px;
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 10px;
+            font-size: 12px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
             z-index: 1000;
             display: flex;
@@ -295,35 +295,31 @@
 </head>
 <body>
 
-    <h1>Haritalı Coğrafya Alıştırması</h1>
+    <h1>Haritalarla Coğrafya</h1>
 
     <div id="app-container">
         
-        <!-- Başlangıç Ekranı -->
         <div id="start-screen">
-            <h2>Oyunu başlatmak için Başla tuşuna bas.</h2>
-            
-            <button class="ready-btn" onclick="showMenu()">Başla</button>
+            <h2>Türkiye Coğrafyasını Keşfetmeye</h2>
+            <button class="question-btn" disabled>Hazır mısın?</button>
+            <button class="ready-btn" onclick="showMenu()">EVET</button>
         </div>
 
-        <!-- Ana Menü Ekranı -->
         <div id="menu-screen">
             <h2 style="text-align: center; margin-top: 0;">Kategori Seçiniz</h2>
             <button class="category-btn btn-daglar" onclick="showSubMenu('daglar')">⛰️ Dağlar</button>
-            <button class="category-btn btn-ovalar" onclick="showSubMenu('ovalar')">🏕️ Ovalar</button>
+            <button class="category-btn btn-ovalar" onclick="showSubMenu('ovalar')">🌿 Ovalar</button>
             <button class="category-btn btn-platolar" onclick="showSubMenu('platolar')">🏜️ Platolar</button>
             <button class="category-btn btn-goller" onclick="showSubMenu('goller')">🌊 Göller</button>
             <button class="category-btn btn-akarsular" onclick="startGame('akarsular', 'all')">🏞️ Akarsular</button>
         </div>
 
-        <!-- Alt Menü Ekranı -->
         <div id="sub-menu-screen">
             <h2 id="sub-menu-title" style="text-align: center; margin-top: 0;">Alt Kategori Seçiniz</h2>
             <div id="sub-menu-buttons" style="display: flex; flex-direction: column; gap: 10px;"></div>
             <button class="back-menu-btn" onclick="showMenu()" style="margin-top: 15px;">🔙 Ana Menüye Dön</button>
         </div>
 
-        <!-- Oyun Ekranı -->
         <div id="game-screen">
             <div class="header">
                 <button class="back-menu-btn" onclick="showMenu()">🔙 Menüye Dön</button>
@@ -345,7 +341,6 @@
             <button class="home-btn" id="next-btn" style="display:none; margin-top:10px;" onclick="nextQuestion()">Sonraki Soru ➡️</button>
         </div>
 
-        <!-- Sonuç Ekranı -->
         <div id="result-screen">
             <h2>🎉 Oyun Bitti!</h2>
             <h3 id="final-score" style="font-size: 24px; color: var(--primary);">Puanınız: 0</h3>
@@ -353,16 +348,13 @@
         </div>
     </div>
 
-    <!-- Sağ Alt Geliştirici İmzası -->
     <div class="developer-credit">
         Geliştiren: Emre Önel |
-        <a href="mailto:emrenel1052@gmail.com">
-            <span>✉️</span> emrenel1052@gmail.com
-        </a>
+        <a href="mailto:emrenel1052@gmail.com">✉️ emrenel1052@gmail.com</a>
     </div>
 
     <script>
-        // Görseldeki (image.png) piksel sınırlarına göre tamamen kalibre edilmiş yeni koordinat sistemi
+        // Haritana özel kalibre edilmiş, artık tüm alt kategorileri dolu veritabanı
         const db = {
             daglar: [
                 { answer: "Ağrı Dağı", type: "volkanik", x: 93.5, y: 34.5, options: ["Tecer", "Ağrı Dağı", "Ilgaz Dağı", "Kaçkar Dağı"] },
@@ -378,7 +370,7 @@
                 { answer: "Palandöken", type: "kivrimli", x: 75.0, y: 38.0, options: ["Erciyes", "Palandöken", "Ilgaz Dağları", "Cilo(Sat)"] },
                 { answer: "Madra", type: "kirik", x: 7.0, y: 41.0, options: ["Madra", "Tendürek", "Mercan Dağları", "Menteşe"] },
                 { answer: "Tendürek", type: "volkanik", x: 91.0, y: 43.0, options: ["Karacadağ", "Kaz Dağları", "Tendürek", "Nemrut"] },
-                { answer: "Yunt", type: "kirik", x: 7.5, y: 46.0, options: ["Bolkar", "Kaz Dağları", "Ilgaz Dağları", "Yunt"] },
+                { answer: "Yunt", type: "kirik", x: 7.5, y: 46.0, options: ["Tecer", "Giresun", "Yıldız", "Yunt"] },
                 { answer: "Küre", type: "kivrimli", x: 39.5, y: 15.0, options: ["Yıldız", "Amanos(Nur)", "Küre", "Sultan"] },
                 { answer: "Tahtalı", type: "kivrimli", x: 55.0, y: 59.0, options: ["Mescit", "Canik", "Samanlı", "Tahtalı"] },
                 { answer: "Tecer", type: "kivrimli", x: 58.5, y: 44.0, options: ["Tecer", "Giresun", "Yıldız", "Yunt"] },
@@ -411,7 +403,12 @@
                 { answer: "Iğdır Ovası", type: "tektonik", x: 93.0, y: 32.5, options: ["Muş Ovası", "Elbistan Ovası", "Iğdır Ovası", "Malatya Ovası"] },
                 { answer: "Gediz Ovası", type: "tektonik", x: 11.5, y: 47.5, options: ["Bakırçay Ovası", "Gediz Ovası", "Büyük Menderes", "Küçük Menderes"] },
                 { answer: "Muş Ovası", type: "tektonik", x: 80.5, y: 49.0, options: ["Erzincan Ovası", "Tercan Ovası", "Muş Ovası", "Pasinler Ovası"] },
-                { answer: "Amik Ovası", type: "tektonik", x: 55.5, y: 85.0, options: ["Amik Ovası", "Çukurova", "Silifke Ovası", "Antalya Ovası"] }
+                { answer: "Amik Ovası", type: "tektonik", x: 55.5, y: 85.0, options: ["Amik Ovası", "Çukurova", "Silifke Ovası", "Antalya Ovası"] },
+                // Yeni Eklenen Türler (Karstik ve Volkanik Ovalar)
+                { answer: "Elmalı Ovası", type: "karstik", x: 23.0, y: 71.0, options: ["Bafra Ovası", "Elmalı Ovası", "Konya Ovası", "Ergene Ovası"] },
+                { answer: "Tefenni Ovası", type: "karstik", x: 21.5, y: 66.0, options: ["Tefenni Ovası", "Çukurova", "Harran Ovası", "Iğdır Ovası"] },
+                { answer: "Develi Ovası", type: "volkanik", x: 50.0, y: 55.5, options: ["Çarşamba Ovası", "Gediz Ovası", "Develi Ovası", "Muş Ovası"] },
+                { answer: "Çaldıran Ovası", type: "volkanik", x: 89.5, y: 45.0, options: ["Amik Ovası", "Çaldıran Ovası", "Bursa Ovası", "Antalya Ovası"] }
             ],
             platolar: [
                 { answer: "Haymana Platosu", type: "tabaka", x: 36.5, y: 44.5, options: ["Haymana Platosu", "Bozok Platosu", "Obruk Platosu", "Taşeli Platosu"] },
@@ -435,7 +432,12 @@
                 { answer: "Çıldır Gölü", type: "set", x: 87.5, y: 19.5, options: ["Nemrut Gölü", "Erçek Gölü", "Nazik Gölü", "Çıldır Gölü"] },
                 { answer: "Sapanca Gölü", type: "tektonik", x: 24.0, y: 23.0, options: ["Uluabat", "İznik", "Sapanca Gölü", "Terkos"] },
                 { answer: "Bafa (Çamiçi) Gölü", type: "set", x: 8.5, y: 59.5, options: ["Köyceğiz Gölü", "Bafa (Çamiçi) Gölü", "Salda Gölü", "Marmara Gölü"] },
-                { answer: "Salda Gölü", type: "karstik", x: 22.5, y: 67.5, options: ["Salda Gölü", "Burdur Gölü", "Acıgöl", "Eğirdir"] }
+                { answer: "Salda Gölü", type: "karstik", x: 22.5, y: 67.5, options: ["Salda Gölü", "Burdur Gölü", "Acıgöl", "Eğirdir"] },
+                // Yeni Eklenen Türler (Volkanik ve Buzul Gölleri)
+                { answer: "Nemrut Krater Gölü", type: "volkanik", x: 81.5, y: 51.5, options: ["Van Gölü", "Beyşehir Gölü", "Nemrut Krater Gölü", "Çıldır Gölü"] },
+                { answer: "Meke Gölü (Maarı)", type: "volkanik", x: 41.0, y: 62.0, options: ["Meke Gölü (Maarı)", "Tuz Gölü", "Eğirdir Gölü", "Sapanca Gölü"] },
+                { answer: "Kilimli Göl (Uludağ)", type: "buzul", x: 17.5, y: 31.5, options: ["İznik Gölü", "Burdur Gölü", "Salda Gölü", "Kilimli Göl (Uludağ)"] },
+                { answer: "Karagöl (Kaçkar)", type: "buzul", x: 78.5, y: 26.5, options: ["Karagöl (Kaçkar)", "Bafa Gölü", "Sapanca Gölü", "Uluabat Gölü"] }
             ],
             akarsular: [
                 { answer: "Kızılırmak", x: 45.5, y: 42.0, options: ["Yeşilırmak", "Fırat", "Kızılırmak", "Menderes"] },
